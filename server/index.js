@@ -30,7 +30,7 @@ app.post('/users', function (req, res) {
 });
 
 // GET route
-app.get('/transactions', function (req, res) {
+app.get('/banking', function (req, res) {
   db.models.Transactions.find({})
     .exec()
     .then((data) => {
