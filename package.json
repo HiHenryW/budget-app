@@ -13,6 +13,7 @@
     "start": "webpack-dev-server --hot --mode development"
   },
   "dependencies": {
+    "mongoose": "5.9.19",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21"
