@@ -1,4 +1,11 @@
+#app {
+  margin: 50px;
+}
+
+.main {
+  text-align: center;
+
+}
 h1 {
-  color: white;
-  background-color: black;
+  color: black;
 }
