@@ -67,7 +67,7 @@ app.get('/banking', function (req, res) {
 // POST route
 app.post('/users', function (req, res) {
   console.log('req.body: ', req.body);
-  let queryStr = `INSERT INTO users (user_name, monthly_budget) VALUES ("${req.body.name}", "${req.body.budget}")`;
+  let queryStr = `INSERT INTO users (user_name, monthly_budget) VALUES ("${req.body.user_name}", "${req.body.monthly_budget}")`;
   connection.query(queryStr, function (err, results) {
     if (err) {
       console.log('err in app.post: ', err);
