@@ -19,7 +19,11 @@ app.listen(PORT, () => {
 /* ---------------------- SEEDING BANKING AND USERS TABLES ---------------------- */
 const seedBankingTable = () => {
   for (let i = 0; i < data.bankingSeed.length; i++) {
-    let queryStr = `INSERT INTO banking (i_date, i_description, amount, i_transaction, category, account_name, user_name) VALUES ("${data.bankingSeed[i].i_date}", "${data.bankingSeed[i].i_description}", "${data.bankingSeed[i].amount}", "${data.bankingSeed[i].i_transaction}", "${data.bankingSeed[i].category}", "${data.bankingSeed[i].account_name}", "${data.bankingSeed[i].user_name}")`;
+    let dateComponents = data.bankingSeed[i].i_date.split('/');
+    let dateFormatted =
+      dateComponents[2] + '-' + dateComponents[0] + '-' + dateComponents[1];
+    // console.log('formatted date: ', dateFormatted);
+    let queryStr = `INSERT INTO banking (i_date, i_description, amount, i_transaction, category, account_name, user_name) VALUES ("${dateFormatted}", "${data.bankingSeed[i].i_description}", "${data.bankingSeed[i].amount}", "${data.bankingSeed[i].i_transaction}", "${data.bankingSeed[i].category}", "${data.bankingSeed[i].account_name}", "${data.bankingSeed[i].user_name}")`;
     connection.query(queryStr, function (err, results) {
       if (err) {
         console.log('err in seedBankingTable: ', err);
