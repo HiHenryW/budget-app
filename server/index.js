@@ -73,7 +73,7 @@ app.post('/users', function (req, res) {
       console.log('err in app.post: ', err);
       res.sendStatus(404);
     } else {
-      res.sendStatus(201);
+      res.status(201).json(req.body);
     }
   });
 });
