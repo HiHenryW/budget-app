@@ -33,7 +33,7 @@ const seedBankingTable = () => {
 };
 
 // UNCOMMENT BELOW TO POPULATE BANKING TABLE
-// seedBankingTable();
+//seedBankingTable();
 
 const seedUserTable = () => {
   for (let i = 0; i < data.userSeed.length; i++) {
@@ -47,7 +47,7 @@ const seedUserTable = () => {
 };
 
 // UNCOMMENT BELOW TO POPULATE USER TABLE
-// seedUserTable();
+//seedUserTable();
 
 /* ---------------------- EXPRESS ROUTING ---------------------- */
 

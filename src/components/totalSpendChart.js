@@ -31,6 +31,9 @@ class Chart extends React.Component {
             data: [1150, 336, 308, 248, 200]
           }
         ]
+      },
+      options: {
+        maintainAspectRatio: false,
       }
     }
   }
@@ -39,9 +42,13 @@ class Chart extends React.Component {
 render() {
   return (
     <div className="chart">
-      <h2>Spending By Category</h2>
+      <h2>Top Spend Categories</h2>
+      <br/> <br/>
       <Doughnut
         data={this.state.chartData}
+        options={this.state.options}
+        width={500}
+        height={400}
       />
     </div>
   )
