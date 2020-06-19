@@ -25,7 +25,7 @@ class UserForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     axios
-      .post('/users', this.state)
+      .post('http://localhost:3000/users', this.state)
       .then(() => {
         this.clearForm();
       })
