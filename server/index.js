@@ -53,7 +53,7 @@ const seedUserTable = () => {
 
 // GET route
 app.get('/banking', function (req, res) {
-  const queryStr = 'SELECT * FROM banking ORDER BY id ASC';
+  const queryStr = 'SELECT * FROM banking ORDER BY i_date DESC';
   connection.query(queryStr, (err, data) => {
     if (err) {
       console.log('err in app.get: ', err);
