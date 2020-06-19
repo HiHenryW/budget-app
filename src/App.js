@@ -7,20 +7,28 @@ import TotalSpend from './components/totalSpend.js';
 import Income from './components/income.js';
 import Transactions from './components/transactions.js';
 import UserForm from './components/userForm.js';
-import { Navbar, Nav, NavDropdown} from 'react-bootstrap';
+import { Navbar, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: [{user_name: ''}],
-      banking: []
+      currentUser: '',
+      currentMonth: '',
+      totalSpent: 850,
+      user: {id: 0, user_name: '', monthly_budget: 0},
+      banking: [],
+      view: 'dashboard'
     }
   }
 
+  spendToBudget(spend, budget) {
+    return Math.round((spend / budget) * 100);
+  }
+
   componentDidMount(){
-    this.setState({user: userData, banking: userBanking});
+    this.setState({user: userData[0], banking: userBanking});
   }
   render() {
     return (
@@ -35,8 +43,8 @@ class App extends React.Component {
         </Navbar.Collapse>
       </Navbar>
       <div className="main">
-      <MaxBudget user={this.state.user}/>
-      <TotalSpend/>
+      <MaxBudget user={this.state.user} calculator={this.spendToBudget} spend={this.state.totalSpent}/>
+      <TotalSpend/ >
       <Income/>
       <Transactions/>
       <UserForm/>
