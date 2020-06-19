@@ -89,7 +89,7 @@ class App extends React.Component {
       <div className="main">
       <MaxBudget user={this.state.user} calculator={this.spendToBudget} spend={this.state.totalSpent}/>
       <br/><br/>
-      <Chart top5Cat={this.state.top5Cat} top5Amount={this.state.top5Amount}/>
+      <Chart top5Cat={this.state.top5Cat} top5Amount={this.state.top5Amount} width={400}/>
       <br/><br/>
       <Income/>
       <br/><br/>
