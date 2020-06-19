@@ -50,33 +50,37 @@ class UserForm extends React.Component {
 
   render() {
     return (
-      <div className="form">
-        <h2>Welcome!</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
+      <div>
+        <h2>
+          Welcome!
+          <small class="text-muted"> Enter name and monthly budget below</small>
+        </h2>
+          <form onSubmit={this.handleSubmit}>
+            <label>Name</label>
             <input
               type="text"
+              class="form-control w-25"
               placeholder="Please enter your name"
               value={this.state.user_name}
               onChange={this.handleNameChange}
             />
-          </label>
-          <br />
-          <br />
-          <label>
-            Monthly Budget Amount:
+            <small class="form-text text-muted">
+              We'll never share your information with anyone else.
+            </small>
+            <br></br>
+            <label>Monthly Budget</label>
             <input
               type="number"
+              class="form-control w-25"
               min="0"
               placeholder="Monthly budget target ($)"
               value={this.state.monthly_budget}
               onChange={this.handleBudgetChange}
             />
-          </label>
-          <br />
-          <br />
-          <button type="submit">Submit</button>
+            <br></br>
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
         </form>
       </div>
     );
