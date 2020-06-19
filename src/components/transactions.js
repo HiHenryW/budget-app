@@ -7,30 +7,44 @@ class Transactions extends React.Component {
     super(props);
     this.state = {
       transactions: [],
+      recentTransactions: [],
     };
 
-    this.retrieveRecentTransactions = this.retrieveRecentTransactions.bind(
-      this
-    );
+    this.retrieveTransactions = this.retrieveTransactions.bind(this);
   }
 
   componentDidMount() {
     this.retrieveTransactions();
   }
 
-  retrieveTransactions(params) {
+  retrieveTransactions() {
     axios
       .get('http://localhost:3000/banking')
       .then((res) => {
         this.setState({
           transactions: res.data,
         });
-        // console.log(res)
+        // console.log('state: ', this.state.transactions[0])
+      })
+      .then(() => {
+        let smallerList = [];
+        for (let i = 0; i < 5; i++) {
+          let transaction = {};
+          transaction.index = i + 1;
+          transaction.date = this.state.transactions[i].i_date;
+          transaction.description = this.state.transactions[i].i_description;
+          transaction.amount = this.state.transactions[i].amount;
+          transaction.category = this.state.transactions[i].category;
+          smallerList.push(transaction);
+        }
+        this.setState({ recentTransactions: smallerList });
+      })
+      .then(() => {
+        console.log(this.state.recentTransactions);
       })
       .catch((err) => {
-        console.log('err in retrieveRecentTransactions: ', err);
+        console.log('err in retrieveTransactions: ', err);
       });
-      console.log(this.state.transactions)
   }
 
   render() {
@@ -50,24 +64,17 @@ class Transactions extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                {this.state.recentTransactions.map((transaction) => {
+                  return (
+                    <tr>
+                      <th scope="row">{transaction.index}</th>
+                      <td>{transaction.date}</td>
+                      <td>{transaction.description}</td>
+                      <td>{transaction.amount}</td>
+                      <td>{transaction.category}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </table>
