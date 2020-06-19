@@ -75,8 +75,8 @@ class App extends React.Component {
     this.setState({
       user: data,
       currentUser: data.user_name
-    })
-    console.log('updateUserBudget ran! New state: ', this.state.user)
+    }, this.changeView('dashboard'))
+    // console.log('updateUserBudget ran! New state: ', this.state.user)
   }
 
   changeView(option) {
@@ -119,7 +119,7 @@ class App extends React.Component {
         </Navbar.Collapse>
       </Navbar>
       {this.renderView()}
-     
+
       </div>
     )
   }

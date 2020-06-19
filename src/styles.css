@@ -10,6 +10,16 @@
   margin: 0 300 0 300;
 }
 
+.form-control {
+  margin: auto;
+  width: 50%;
+}
+
+.input-group {
+  margin: auto;
+  width: 30%;
+}
+
 .form {
   margin: auto;
   text-align: center;
