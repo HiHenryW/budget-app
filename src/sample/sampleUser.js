@@ -2,7 +2,7 @@
 let userData = [
   {
     id: 1,
-    user_name: 'Mike',
+    user_name: 'Joe',
     monthly_budget: 2000
   }
 ]
