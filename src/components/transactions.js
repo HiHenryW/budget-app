@@ -1,6 +1,7 @@
 // List of last ~5 transactions  (w/ view all link)
 import React from 'react';
 import axios from 'axios';
+const moment = require('moment');
 
 class Transactions extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class Transactions extends React.Component {
                   return (
                     <tr>
                       <th scope="row">{transaction.index}</th>
-                      <td>{transaction.date}</td>
+                      <td>{moment(transaction.date).format("MMM D 'YY")}</td>
                       <td>{transaction.description}</td>
                       <td>{transaction.amount}</td>
                       <td>{transaction.category}</td>
