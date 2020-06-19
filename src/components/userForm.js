@@ -55,29 +55,47 @@ class UserForm extends React.Component {
           Welcome!
           <small class="text-muted"> Enter name and monthly budget below</small>
         </h2>
-          <form onSubmit={this.handleSubmit}>
-            <label>Name</label>
-            <input
-              type="text"
-              class="form-control w-25"
-              placeholder="Please enter your name"
-              value={this.state.user_name}
-              onChange={this.handleNameChange}
-            />
-            <small class="form-text text-muted">
-              We'll never share your information with anyone else.
-            </small>
-            <br></br>
-            <label>Monthly Budget</label>
-            <input
-              type="number"
-              class="form-control w-25"
-              min="0"
-              placeholder="Monthly budget target ($)"
-              value={this.state.monthly_budget}
-              onChange={this.handleBudgetChange}
-            />
-            <br></br>
+        <form onSubmit={this.handleSubmit}>
+          <label>Name</label>
+          <input
+            type="text"
+            class="form-control w-25"
+            placeholder="Please enter your name"
+            value={this.state.user_name}
+            onChange={this.handleNameChange}
+          />
+          <small class="form-text text-muted">
+            We'll never share your information with anyone else.
+          </small>
+          <br></br>
+          <label>Monthly Budget</label>
+          <input
+            type="number"
+            class="form-control w-25"
+            min="0"
+            placeholder="Monthly budget target ($)"
+            value={this.state.monthly_budget}
+            onChange={this.handleBudgetChange}
+          />
+          <br></br>
+          <label>Upload transactions</label>
+          <div class="input-group mb-3 form-control-sm">
+            <div class="custom-file">
+              <input
+                type="file"
+                class="custom-file-input"
+                id="inputGroupFile02"
+              />
+              <label
+                class="custom-file-label"
+                for="inputGroupFile02"
+                aria-describedby="inputGroupFileAddon02"
+              >
+                Choose file
+              </label>
+            </div>
+          </div>
+          <br></br>
           <button type="submit" class="btn btn-primary">
             Submit
           </button>
