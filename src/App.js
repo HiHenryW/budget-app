@@ -24,6 +24,8 @@ class App extends React.Component {
       view: 'dashboard'
     }
     this.getTopCategories = this.getTopCategories.bind(this);
+    this.renderView = this.renderView.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
 
   spendToBudget(spend, budget) {
@@ -67,18 +69,13 @@ class App extends React.Component {
     this.setState({user: userData[0], banking: userBanking});
   }
 
-  render() {
-    return (
-      <div>
-      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" sticky="top">
-        <Navbar.Brand href="#home">Budget App</Navbar.Brand>
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="#budget">Budget</Nav.Link>
-            <Nav.Link href="#transactions">Transactions</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+  changeView(option) {
+    this.setState({view: option})
+  }
+
+  renderView() {
+    if (this.state.view === 'dashboard') {
+      return (
       <div className="main">
       <MaxBudget user={this.state.user} calculator={this.spendToBudget} spend={this.state.totalSpent}/>
       <br/><br/>
@@ -87,12 +84,35 @@ class App extends React.Component {
       <Income/>
       <br/><br/>
       <Transactions/>
-      <br/><br/>
-      <UserForm/>
     </div>
+      )
+    } else {
+      return (
+      <div className="form">
+      <UserForm/>
+      </div>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <div>
+      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" sticky="top">
+        <Navbar.Brand href="#home" onClick={()=> this.changeView('dashboard')}>Budget App</Navbar.Brand>
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="#budget" onClick={()=> this.changeView('budget')}>Budget</Nav.Link>
+            <Nav.Link href="#transactions">Transactions</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      {this.renderView()}
+      
     </div>
     )
   }
 }
 
 export default hot(App);
+

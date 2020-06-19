@@ -69,12 +69,12 @@ class Transactions extends React.Component {
 
   render() {
     return (
-      <div class="row justify-content-center">
-        <div class="col-auto">
+      <div className="row justify-content-center" id="transactions">
+        <div className="col-auto">
           <h2>Recent Transactions</h2>
-          <table class="table table-responsive">
-            <table class="table">
-              <thead class="thead-dark">
+          <table className="table table-responsive">
+            <table className="table">
+              <thead className="thead-dark">
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Date</th>
@@ -100,7 +100,7 @@ class Transactions extends React.Component {
           </table>
           <button
             type="button"
-            class="btn btn-outline-primary"
+            className="btn btn-outline-primary"
             onClick={this.handleExpandClick}
           >
             Show more
@@ -108,7 +108,7 @@ class Transactions extends React.Component {
           <span> </span>
           <button
             type="button"
-            class="btn btn-outline-secondary"
+            className="btn btn-outline-secondary"
             onClick={this.handleMinimizeClick}
           >
             Show less
