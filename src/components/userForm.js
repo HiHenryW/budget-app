@@ -5,8 +5,8 @@ class UserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      budget: '',
+      user_name: '',
+      monthly_budget: '',
     };
 
     this.clearForm = this.clearForm.bind(this);
@@ -17,8 +17,8 @@ class UserForm extends React.Component {
 
   clearForm() {
     this.setState({
-      name: '',
-      budget: '',
+      user_name: '',
+      monthly_budget: '',
     });
   }
 
@@ -26,6 +26,9 @@ class UserForm extends React.Component {
     event.preventDefault();
     axios
       .post('http://localhost:3000/users', this.state)
+      .then((res) => {
+        this.props.updateUserBudget(res.data);
+      })
       .then(() => {
         this.clearForm();
       })
@@ -38,11 +41,11 @@ class UserForm extends React.Component {
   }
 
   handleNameChange(event) {
-    this.setState({ name: event.target.value });
+    this.setState({ user_name: event.target.value });
   }
 
   handleBudgetChange(event) {
-    this.setState({ budget: event.target.value });
+    this.setState({ monthly_budget: event.target.value });
   }
 
   render() {
@@ -55,7 +58,7 @@ class UserForm extends React.Component {
             <input
               type="text"
               placeholder="Please enter your name"
-              value={this.state.name}
+              value={this.state.user_name}
               onChange={this.handleNameChange}
             />
           </label>
@@ -67,7 +70,7 @@ class UserForm extends React.Component {
               type="number"
               min="0"
               placeholder="Monthly budget target ($)"
-              value={this.state.budget}
+              value={this.state.monthly_budget}
               onChange={this.handleBudgetChange}
             />
           </label>

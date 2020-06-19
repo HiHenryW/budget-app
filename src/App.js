@@ -24,6 +24,7 @@ class App extends React.Component {
       view: 'dashboard'
     }
     this.getTopCategories = this.getTopCategories.bind(this);
+    this.updateUserBudget = this.updateUserBudget.bind(this);
     this.renderView = this.renderView.bind(this);
     this.changeView = this.changeView.bind(this);
   }
@@ -40,33 +41,42 @@ class App extends React.Component {
         } else {
           accum[curr.category] = curr.amount;
         }
-      } 
+      }
       return accum;
     }, {});
-  
+
     let list = Object.entries(top)
     list.sort((a,b) => {
       return b[1] - a[1];
     })
-  
+
     let newList = list.slice(0,5);
-  
+
     let categories = [];
     let amount = [];
-    
+
     newList.forEach(item => {
       categories.push(item[0]);
       amount.push(Math.round(item[1]));
     })
-     
+
     return [categories, amount]
-  
+
   }
 
   componentDidMount(){
     // Below needs to be turned into promise so state can change (top5Cat, top5 amount)
     //this.getTopCategories(userBanking)
     this.setState({user: userData[0], banking: userBanking});
+  }
+
+
+  updateUserBudget(data) {
+    this.setState({
+      user: data,
+      currentUser: data.user_name
+    })
+    console.log('updateUserBudget ran! New state: ', this.state.user)
   }
 
   changeView(option) {
@@ -89,10 +99,11 @@ class App extends React.Component {
     } else {
       return (
       <div className="form">
-      <UserForm/>
+      <UserForm updateUserBudget={this.updateUserBudget}/>
       </div>
       )
     }
+
   }
 
   render() {
@@ -108,8 +119,8 @@ class App extends React.Component {
         </Navbar.Collapse>
       </Navbar>
       {this.renderView()}
-      
-    </div>
+     
+      </div>
     )
   }
 }
