@@ -10,12 +10,11 @@ CREATE TABLE users (
 
 CREATE TABLE banking (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  i_date DATE,
+  i_date TEXT,
   i_description TEXT,
   amount INT,
   i_transaction TEXT,
   category TEXT,
   account_name TEXT,
   user_name VARCHAR(255) NOT NULL
-  ORDER BY i_date DESC
 );
