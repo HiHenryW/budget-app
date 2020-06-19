@@ -2,13 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const connection = require('../database/index.js');
 const data = require('./data.js');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
 // console.log('connection: ', connection.query);
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../src'));
-
+app.use(cors());
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
@@ -55,6 +56,20 @@ app.get('/banking', function (req, res) {
       res.sendStatus(404);
     } else {
       res.status(200).json(data);
+    }
+  });
+});
+
+// POST route
+app.post('/users', function (req, res) {
+  console.log('req.body: ', req.body);
+  let queryStr = `INSERT INTO users (user_name, monthly_budget) VALUES ("${req.body.name}", "${req.body.budget}")`;
+  connection.query(queryStr, function (err, results) {
+    if (err) {
+      console.log('err in app.post: ', err);
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(201);
     }
   });
 });
