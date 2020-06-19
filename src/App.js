@@ -70,7 +70,8 @@ class App extends React.Component {
 
   updateUserBudget(data) {
     this.setState({
-      user: data
+      user: data,
+      currentUser: data.user_name
     })
     console.log('updateUserBudget ran! New state: ', this.state.user)
   }
