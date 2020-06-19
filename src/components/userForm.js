@@ -50,7 +50,7 @@ class UserForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="form">
         <h2>Welcome!</h2>
         <form onSubmit={this.handleSubmit}>
           <label>

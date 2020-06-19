@@ -38,7 +38,7 @@ class Chart extends React.Component {
 
 render() {
   return (
-    <div>
+    <div className="chart">
       <h2>Spending By Category</h2>
       <Doughnut
         data={this.state.chartData}
